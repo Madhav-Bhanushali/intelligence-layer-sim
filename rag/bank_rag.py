@@ -28,24 +28,35 @@ class BankRAGSystem:
     
     def __init__(
         self,
-        chroma_url: str = "http://localhost:8000",
+        chroma_url: Optional[str] = None,
         collection_name: str = "bank_documents",
         embedding_model: str = "all-MiniLM-L6-v2",
         chunk_size: int = 512,
         chunk_overlap: int = 50,
+        persist_dir: Optional[str] = None,
     ):
-        self.chroma_url = chroma_url
+        self.chroma_url = chroma_url or os.getenv("CHROMA_URL")
         self.collection_name = collection_name
         self.embedding_model_name = embedding_model
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         
         # Initialize ChromaDB client
-        self.client = chromadb.HttpClient(
-            host=chroma_url.replace("http://", "").split(":")[0],
-            port=int(chroma_url.split(":")[-1]) if ":" in chroma_url else 8000,
-            settings=Settings(anonymized_telemetry=False)
-        )
+        # Use PersistentClient (local file storage) by default for simplicity
+        # Only use HttpClient if CHROMA_URL is explicitly set
+        if self.chroma_url:
+            self.client = chromadb.HttpClient(
+                host=self.chroma_url.replace("http://", "").split(":")[0],
+                port=int(self.chroma_url.split(":")[-1]) if ":" in self.chroma_url else 8000,
+                settings=Settings(anonymized_telemetry=False)
+            )
+        else:
+            # Use local persistent storage - no network needed
+            persist_path = persist_dir or os.getenv("CHROMA_PERSIST_DIR", "/data/chroma")
+            self.client = chromadb.PersistentClient(
+                path=persist_path,
+                settings=Settings(anonymized_telemetry=False)
+            )
         
         # Initialize embedding model
         self.embedder = SentenceTransformer(embedding_model)
@@ -366,12 +377,17 @@ VEHICLE LOAN PRODUCTS
 
 
 def initialize_bank_rag(
-    chroma_url: str = "http://localhost:8000",
+    chroma_url: Optional[str] = None,
     collection_name: str = "bank_documents",
-    data_dir: Optional[str] = None
+    data_dir: Optional[str] = None,
+    persist_dir: Optional[str] = None
 ) -> BankRAGSystem:
     """Initialize RAG system with bank documents"""
-    rag = BankRAGSystem(chroma_url=chroma_url, collection_name=collection_name)
+    rag = BankRAGSystem(
+        chroma_url=chroma_url, 
+        collection_name=collection_name,
+        persist_dir=persist_dir
+    )
     
     # Add template documents
     for doc_type, content in BANK_DOCUMENT_TEMPLATES.items():

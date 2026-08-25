@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 from datetime import datetime
 from typing import Dict, Any, List
 import time
+import os
 
 # Page config
 st.set_page_config(
@@ -19,8 +20,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# API base URL
-API_URL = "http://localhost:8080"
+# API base URL - read from environment variable for Docker compatibility
+API_URL = os.getenv("API_URL", "http://localhost:8080")
 
 # ============ HELPER FUNCTIONS ============
 

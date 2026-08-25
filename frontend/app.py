@@ -51,6 +51,7 @@ def retry_on_failure(max_retries: int = 3, delay: float = 1.0):
                     return {}
             return {}
         return wrapper
+    return decorator
 
 @retry_on_failure(max_retries=3, delay=1.0)
 def api_get(endpoint: str, params: Dict = None) -> Dict:

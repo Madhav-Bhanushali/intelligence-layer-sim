@@ -5,38 +5,33 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PROVIDER = os.getenv("MODEL_PROVIDER", "anthropic").lower()
+PROVIDER = os.getenv("MODEL_PROVIDER", "groq").lower()
 
 
 def get_provider() -> str:
     """Get the current provider (reads env var at call time)."""
-    return os.getenv("MODEL_PROVIDER", "anthropic").lower()
+    return os.getenv("MODEL_PROVIDER", "groq").lower()
 
 
 def is_mock_mode() -> bool:
     """Check if mock mode is enabled (reads env var at call time)."""
     return os.getenv("MOCK_MODE", "false").lower() == "true"
 
-# Anthropic models
-ANTHROPIC_SMALL = "claude-haiku-4-5-20251001"
-ANTHROPIC_LARGE = "claude-sonnet-5"
-
-# Gemini models
-GEMINI_SMALL = "gemini-1.5-flash"
-GEMINI_LARGE = "gemini-1.5-pro"
 
 # Groq models
 GROQ_SMALL = "openai/gpt-oss-20b"
 GROQ_LARGE = "openai/gpt-oss-120b"
 
+# Gemini models
+GEMINI_SMALL = "gemini-1.5-flash"
+GEMINI_LARGE = "gemini-1.5-pro"
+
 # Mock models
 MOCK_SMALL = "mock-haiku"
 MOCK_LARGE = "mock-sonnet"
 
-_anthropic_client: Optional[Any] = None
 _gemini_client: Optional[Any] = None
 _groq_client: Optional[Any] = None
-
 
 def generate_mock_response(
     messages: List[Dict[str, str]],
@@ -179,21 +174,6 @@ def call_mock(
         }
 
 
-def get_anthropic_client():
-    """Get or create the Anthropic client."""
-    global _anthropic_client
-    if _anthropic_client is None:
-        try:
-            from anthropic import Anthropic
-        except ImportError:
-            raise ValueError("anthropic package not installed. Run: pip install anthropic")
-        api_key = os.getenv("ANTHROPIC_API_KEY")
-        if not api_key:
-            raise ValueError("ANTHROPIC_API_KEY environment variable not set")
-        _anthropic_client = Anthropic(api_key=api_key)
-    return _anthropic_client
-
-
 def get_gemini_client():
     """Get or create the Gemini client."""
     global _gemini_client
@@ -223,59 +203,6 @@ def get_groq_client():
             raise ValueError("GROQ_API_KEY environment variable not set")
         _groq_client = Groq(api_key=api_key)
     return _groq_client
-
-
-def call_anthropic(
-    messages: List[Dict[str, str]],
-    model: str,
-    max_tokens: int = 1024,
-    temperature: float = 0.3
-) -> Dict[str, Any]:
-    """Call the Anthropic Messages API."""
-    try:
-        client = get_anthropic_client()
-        
-        system_message = None
-        user_messages = []
-        
-        for msg in messages:
-            if msg["role"] == "system":
-                system_message = msg["content"]
-            else:
-                user_messages.append({"role": msg["role"], "content": msg["content"]})
-        
-        response = client.messages.create(
-            model=model,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            system=system_message,
-            messages=user_messages,
-        )
-        
-        output = ""
-        for block in response.content:
-            if block.type == "text":
-                output += block.text
-        
-        return {
-            "success": True,
-            "output": output,
-            "model": model,
-            "provider": "anthropic",
-            "usage": {
-                "input_tokens": response.usage.input_tokens,
-                "output_tokens": response.usage.output_tokens,
-            }
-        }
-    
-    except Exception as e:
-        return {
-            "success": False,
-            "output": "",
-            "model": model,
-            "provider": "anthropic",
-            "error": str(e),
-        }
 
 
 def call_gemini(
@@ -402,10 +329,8 @@ def call_model(
     provider = get_provider()
     if provider == "gemini":
         return call_gemini(messages, model, max_tokens, temperature)
-    elif provider == "groq":
+    else:  # groq (default)
         return call_groq(messages, model, max_tokens, temperature)
-    else:
-        return call_anthropic(messages, model, max_tokens, temperature)
 
 
 def get_small_model() -> str:
@@ -415,9 +340,7 @@ def get_small_model() -> str:
     provider = get_provider()
     if provider == "groq":
         return GROQ_SMALL
-    if provider == "gemini":
-        return GEMINI_SMALL
-    return ANTHROPIC_SMALL
+    return GEMINI_SMALL
 
 
 def get_large_model() -> str:
@@ -427,6 +350,7 @@ def get_large_model() -> str:
     provider = get_provider()
     if provider == "groq":
         return GROQ_LARGE
+    return GEMINI_LARGE
     if provider == "gemini":
         return GEMINI_LARGE
     return ANTHROPIC_LARGE

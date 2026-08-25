@@ -1,0 +1,57 @@
+{
+  "case_id": "priya_payment_reminder",
+  "bot_type": "collection",
+  "context": {
+    "bot_type": "collection",
+    "borrower_name": "Priya",
+    "balance": 18750,
+    "due_date": "2026-08-01",
+    "case_state": "overdue",
+    "history": [
+      "Payment due 2026-07-25",
+      "First reminder sent 2026-07-28"
+    ],
+    "settlement_limit_pct": 15,
+    "settlement_offer": 2812,
+    "current_message": "When is my payment due?"
+  },
+  "router": {
+    "classification": "routine",
+    "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])"
+  },
+  "prompt_version": {
+    "system_file": "collection_system.md",
+    "system_version": "778c086a",
+    "fewshot_file": "collection_fewshot.md",
+    "fewshot_version": "ece2f7ab"
+  },
+  "model_result": {
+    "success": true,
+    "output": "Hello Priya. Your payment of \u20b918,750 was due on August\u202f1,\u202f2026. Let me know if you need any help with making the payment or if you\u2019d like to discuss payment options.",
+    "model": "openai/gpt-oss-20b",
+    "provider": "groq",
+    "usage": {
+      "input_tokens": 1182,
+      "output_tokens": 260
+    }
+  },
+  "validator_result": {
+    "passed": false,
+    "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])",
+    "details": {
+      "amount_check": {
+        "passed": false,
+        "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])"
+      },
+      "tone_check": {
+        "passed": true,
+        "reason": "Tone check passed"
+      },
+      "distress_check": {
+        "passed": true,
+        "reason": "No distress keywords detected"
+      }
+    }
+  },
+  "final_output": null
+}

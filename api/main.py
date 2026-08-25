@@ -151,20 +151,31 @@ def run_scenario_pipeline(
     provider: str = "local",
     mock: bool = False
 ) -> Dict[str, Any]:
-    """Run the complete intelligence layer pipeline"""
+    """Run the complete intelligence layer pipeline with latency tracking"""
+    
+    import time
+    pipeline_start = time.perf_counter()
+    latency_breakdown = {}
     
     # Load case and assemble context
+    context_start = time.perf_counter()
     case = load_case(bot, case_id)
     context = assemble_context(case)
     current_message = case.get("current_message", "")
+    latency_breakdown["context_assembly_ms"] = round((time.perf_counter() - context_start) * 1000, 2)
     
     # Router decision
+    router_start = time.perf_counter()
     classification, reason = route_message(bot, current_message)
+    latency_breakdown["router_ms"] = round((time.perf_counter() - router_start) * 1000, 2)
     
     # Build prompt
+    prompt_start = time.perf_counter()
     prompt = build_prompt(context, current_message)
+    latency_breakdown["prompt_build_ms"] = round((time.perf_counter() - prompt_start) * 1000, 2)
     
     # Model call
+    model_start = time.perf_counter()
     if mock:
         import os
         os.environ["MOCK_MODE"] = "true"
@@ -179,15 +190,24 @@ def run_scenario_pipeline(
         # Fallback to external providers (would need their clients)
         from src.model_client import call_model_by_type
         model_result = call_model_by_type(prompt["messages"], classification)
+    latency_breakdown["model_call_ms"] = round((time.perf_counter() - model_start) * 1000, 2)
     
     # Validator
+    validator_start = time.perf_counter()
     if model_result.get("success"):
         validator_result = validate_output(model_result["output"], context)
     else:
         validator_result = {"passed": False, "reason": "Model call failed"}
+    latency_breakdown["validator_ms"] = round((time.perf_counter() - validator_start) * 1000, 2)
     
     # Final output
     final_output = model_result["output"] if model_result.get("success") and validator_result.get("passed") else None
+    
+    total_ms = round((time.perf_counter() - pipeline_start) * 1000, 2)
+    latency_breakdown["total_ms"] = total_ms
+    
+    # Add model's internal latency if available
+    model_latency = model_result.get("latency")
     
     return {
         "case_id": case_id,
@@ -198,7 +218,11 @@ def run_scenario_pipeline(
         "model_result": model_result,
         "validator_result": validator_result,
         "final_output": final_output,
-        "latency": model_result.get("latency")
+        "latency": {
+            "total_ms": total_ms,
+            "breakdown": latency_breakdown,
+            "model_internal": model_latency
+        }
     }
 
 

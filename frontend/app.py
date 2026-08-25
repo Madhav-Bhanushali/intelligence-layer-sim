@@ -11,6 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, List
 import time
 import os
+from functools import wraps
 
 # Page config
 st.set_page_config(
@@ -25,31 +26,45 @@ API_URL = os.getenv("API_URL", "http://localhost:8080")
 
 # ============ HELPER FUNCTIONS ============
 
-def api_get(endpoint: str, params: Dict = None) -> Dict:
-    """Make GET request to API"""
-    try:
-        resp = requests.get(f"{API_URL}{endpoint}", params=params, timeout=30)
-        resp.raise_for_status()
-        return resp.json()
-    except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to API. Is the backend running?")
-        return {}
-    except Exception as e:
-        st.error(f"API error: {e}")
-        return {}
+def retry_on_failure(max_retries: int = 3, delay: float = 1.0):
+    """Decorator to retry API calls on failure"""
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            last_error = None
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except requests.exceptions.ConnectionError:
+                    last_error = "Cannot connect to API. Is the backend running?"
+                    if attempt < max_retries - 1:
+                        time.sleep(delay)
+                        continue
+                    st.error(last_error)
+                    return {}
+                except Exception as e:
+                    last_error = f"API error: {e}"
+                    if attempt < max_retries - 1:
+                        time.sleep(delay)
+                        continue
+                    st.error(last_error)
+                    return {}
+            return {}
+        return wrapper
 
+@retry_on_failure(max_retries=3, delay=1.0)
+def api_get(endpoint: str, params: Dict = None) -> Dict:
+    """Make GET request to API with retry"""
+    resp = requests.get(f"{API_URL}{endpoint}", params=params, timeout=30)
+    resp.raise_for_status()
+    return resp.json()
+
+@retry_on_failure(max_retries=3, delay=1.0)
 def api_post(endpoint: str, data: Dict = None) -> Dict:
-    """Make POST request to API"""
-    try:
-        resp = requests.post(f"{API_URL}{endpoint}", json=data, timeout=60)
-        resp.raise_for_status()
-        return resp.json()
-    except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to API. Is the backend running?")
-        return {}
-    except Exception as e:
-        st.error(f"API error: {e}")
-        return {}
+    """Make POST request to API with retry"""
+    resp = requests.post(f"{API_URL}{endpoint}", json=data, timeout=60)
+    resp.raise_for_status()
+    return resp.json()
 
 # ============ SIDEBAR ============
 

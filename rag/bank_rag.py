@@ -314,7 +314,7 @@ DATA PRIVACY
 - Secure storage and transmission
 """,
     
-    "product_catalog": """
+"product_catalog": """
 BANK PRODUCT CATALOG 2024
 
 PERSONAL LOAN PRODUCTS
@@ -373,8 +373,212 @@ VEHICLE LOAN PRODUCTS
    - Up to 95% LTV
    - Quick approval
 """,
-}
+    
+    "credit_cards": """
+CREDIT CARD PORTFOLIO 2024
 
+PREMIUM CARDS
+1. Signature Visa Infinite
+   - Annual fee: ₹10,000
+   - Rewards: 5% on dining, 3% on travel, 1.5% on other
+   - Lounge access: Unlimited domestic, 8 international/year
+   - Credit limit: ₹10L - ₹1Cr
+   - Welcome benefit: 50,000 reward points
+
+2. Platinum Select
+   - Annual fee: ₹3,500
+   - Rewards: 3% on dining, 2% on travel, 1% on other
+   - Lounge access: 4 domestic/year
+   - Credit limit: ₹5L - ₹50L
+   - Welcome benefit: 15,000 reward points
+
+STANDARD CARDS
+3. Smart Shopper
+   - Annual fee: ₹999
+   - Rewards: 2% on groceries, 1.5% on fuel, 1% on other
+   - Credit limit: ₹1L - ₹10L
+   - Welcome benefit: 5,000 reward points
+
+4. Young Professional
+   - Annual fee: ₹499 (waived first year)
+   - Rewards: 1.5% on all spends
+   - Credit limit: ₹50K - ₹5L
+   - Welcome benefit: 2,000 reward points
+
+BUSINESS CARDS
+5. Corporate Elite
+   - Annual fee: ₹5,000
+   - Rewards: 2% on business expenses, 1% on other
+   - Expense management tools included
+   - Credit limit: ₹10L - ₹2Cr
+""",
+    
+    "digital_banking": """
+DIGITAL BANKING SERVICES 2024
+
+MOBILE APP FEATURES
+- UPI payments with QR scan
+- Bill payments (electricity, water, gas, DTH, broadband)
+- Fund transfers (IMPS, NEFT, RTGS, UPI)
+- Investment platform (mutual funds, FD, RD)
+- Credit card management
+- Loan application tracking
+- Card control (block/unblock, set limits)
+
+INTERNET BANKING
+- Account statements & passbook
+- Tax payment (income tax, GST, property tax)
+- Scheduled transfers & standing instructions
+- Trade finance (LC, BG, export/import)
+- Cash management for corporates
+
+SECURITY FEATURES
+- Biometric login (fingerprint, face ID)
+- 2FA with OTP and grid authentication
+- Transaction alerts (SMS, email, push)
+- Device registration & management
+- Virtual keyboard for password entry
+
+WHATSAPP BANKING
+- Balance enquiry
+- Mini statement
+- Credit card due & payment
+- Loan EMI status
+- Branch/ATM locator
+- Complaint registration
+
+CHATBOT (AI-powered)
+- 24/7 customer support
+- Product recommendations
+- Complaint tracking
+- FAQ automation
+- Multi-language support (Hindi, English, 8 regional)
+""",
+    
+    "npa_management": """
+NPA MANAGEMENT & RECOVERY POLICY 2024
+
+CLASSIFICATION NORMS (RBI)
+- SMA-0: Principal/interest overdue 1-30 days
+- SMA-1: Principal/interest overdue 31-60 days
+- SMA-2: Principal/interest overdue 61-90 days
+- NPA: Overdue > 90 days
+
+PROVISIONING REQUIREMENTS
+- Standard assets: 0.40%
+- Sub-standard: 15% (secured), 25% (unsecured)
+- Doubtful (up to 1 year): 25% (secured), 100% (unsecured)
+- Doubtful (1-3 years): 40% (secured), 100% (unsecured)
+- Doubtful (>3 years): 100%
+- Loss assets: 100%
+
+RECOVERY MECHANISMS
+1. Internal Recovery
+   - Tele-calling: Day 1, 7, 15, 30, 60, 90
+   - Field visits: After 60 days overdue
+   - Legal notices: After 90 days
+
+2. External Recovery Agents
+   - Empanelled agencies only
+   - Code of conduct compliance mandatory
+   - No coercion, harassment, or intimidation
+   - Monthly performance review
+
+3. Legal Recovery
+   - SARFAESI Act: Secured assets > ₹1L
+   - DRT: Claims > ₹20L
+   - Lok Adalat: Up to ₹20L
+   - IBC: Corporate borrowers > ₹1Cr
+
+ONE-TIME SETTLEMENT (OTS)
+- Eligibility: NPA > 2 years, or written-off accounts
+- Discount: Up to 50% on principal for >5 year old NPAs
+- Board approval required for >₹1Cr
+- No fresh lending for 2 years post-settlement
+
+ASSET RECONSTRUCTION
+- Sale to ARCs at fair value
+- Transparent bidding process
+- Minimum reserve price policy
+- RBI reporting within 7 days
+""",
+    
+    "risk_management": """
+RISK MANAGEMENT FRAMEWORK 2024
+
+CREDIT RISK
+- Internal rating models (10-grade scale)
+- Single borrower limit: 15% of Tier I capital
+- Group exposure limit: 25% of Tier I capital
+- Sectoral caps: Real estate 15%, Infrastructure 20%
+- Unsecured lending cap: 10% of advances
+
+MARKET RISK
+- VaR limit: 1.5% of Tier I capital (99%, 10-day)
+- Interest rate risk: EaR limit 2% of NII
+- Equity portfolio: 5% of Tier I capital
+- FX open position: Overnight $10M, Intraday $25M
+
+OPERATIONAL RISK
+- BIA approach for capital charge
+- Key risk indicators (KRIs) monitored monthly
+- Loss data collection since 2018
+- BCP/DR tested quarterly
+- Cyber risk: Dedicated SOC, 24/7 monitoring
+
+LIQUIDITY RISK
+- LCR: Minimum 100% (regulatory), 110% (internal)
+- NSFR: Minimum 100%
+- ALM gaps monitored bucket-wise
+- Contingency funding plan updated annually
+
+COUNTERPARTY RISK
+- Bank lines: External rating based limits
+- Corporate exposures: Internal rating + financial analysis
+- CCP exposures: As per RBI guidelines
+- Derivative limits: PFE + add-on methodology
+""",
+    
+    "msme_lending": """
+MSME LENDING POLICY 2024
+
+TARGET SEGMENTS
+- Manufacturing: Up to ₹25Cr
+- Services: Up to ₹10Cr
+- Trading: Up to ₹5Cr
+- Startups: Up to ₹5Cr (under CGTMSE)
+
+PRODUCTS
+1. Working Capital
+   - Cash Credit: 8.5% - 11.5%
+   - Overdraft: 9% - 12%
+   - Bill Discounting: 7.5% - 10%
+   - Supply Chain Finance: 7% - 9.5%
+
+2. Term Loans
+   - Machinery: 8.75% - 11%
+   - Expansion: 9% - 11.5%
+   - Technology Upgradation: 8.5% - 10.5%
+
+3. Government Schemes
+   - CGTMSE: Up to ₹5Cr, 75-85% guarantee
+   - PMEGP: Up to ₹25L (mfg), ₹10L (service)
+   - MUDRA: Shishu ₹50K, Kishore ₹5L, Tarun ₹10L
+   - Stand-Up India: ₹10L - ₹1Cr (SC/ST/Women)
+
+COLLATERAL REQUIREMENTS
+- Up to ₹10L: No collateral (under CGTMSE)
+- ₹10L - ₹2Cr: Primary security + CGTMSE
+- Above ₹2Cr: Full collateral + CGTMSE optional
+
+DIGITAL MSME LENDING
+- GST return based assessment
+- Bank statement analysis (12 months)
+- Credit bureau score integration
+- 48-hour sanction for up to ₹50L
+- Fully digital documentation
+""",
+}
 
 def initialize_bank_rag(
     chroma_url: Optional[str] = None,
@@ -389,7 +593,6 @@ def initialize_bank_rag(
         persist_dir=persist_dir
     )
     
-    # Add template documents
     for doc_type, content in BANK_DOCUMENT_TEMPLATES.items():
         rag.add_document(
             content=content,

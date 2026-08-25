@@ -128,7 +128,8 @@ if page == "🏠 Dashboard":
     col1, col2, col3, col4 = st.columns(4)
     
     latency_stats = api_get("/latency/stats")
-    if latency_stats and "error" not in latency_stats:
+    # Handle case where latency endpoint returns 404 (no data yet)
+    if latency_stats and latency_stats.get("total_calls", 0) > 0:
         with col1:
             st.metric("Total Calls", latency_stats.get("total_calls", 0))
         with col2:

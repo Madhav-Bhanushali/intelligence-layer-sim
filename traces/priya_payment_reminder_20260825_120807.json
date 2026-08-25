@@ -1,0 +1,40 @@
+{
+  "case_id": "priya_payment_reminder",
+  "bot_type": "collection",
+  "context": {
+    "bot_type": "collection",
+    "borrower_name": "Priya",
+    "balance": 18750,
+    "due_date": "2026-08-01",
+    "case_state": "overdue",
+    "history": [
+      "Payment due 2026-07-25",
+      "First reminder sent 2026-07-28"
+    ],
+    "settlement_limit_pct": 15,
+    "settlement_offer": 2812,
+    "current_message": "When is my payment due?"
+  },
+  "router": {
+    "classification": "routine",
+    "reason": "Model call failed"
+  },
+  "prompt_version": {
+    "system_file": "collection_system.md",
+    "system_version": "778c086a",
+    "fewshot_file": "collection_fewshot.md",
+    "fewshot_version": "ece2f7ab"
+  },
+  "model_result": {
+    "success": false,
+    "output": "",
+    "model": "claude-haiku-4-5-20251001",
+    "provider": "anthropic",
+    "error": "ANTHROPIC_API_KEY environment variable not set"
+  },
+  "validator_result": {
+    "passed": false,
+    "reason": "Model call failed"
+  },
+  "final_output": null
+}

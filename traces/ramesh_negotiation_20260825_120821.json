@@ -1,0 +1,40 @@
+{
+  "case_id": "ramesh_negotiation",
+  "bot_type": "collection",
+  "context": {
+    "bot_type": "collection",
+    "borrower_name": "Ramesh",
+    "balance": 42500,
+    "due_date": "2026-07-15",
+    "case_state": "negotiating",
+    "history": [
+      "Reminder sent 2026-07-16",
+      "Borrower replied 2026-07-18"
+    ],
+    "settlement_limit_pct": 20,
+    "settlement_offer": 8500,
+    "current_message": "I can pay half now, can we sort out the rest later?"
+  },
+  "router": {
+    "classification": "complex",
+    "reason": "Model call failed"
+  },
+  "prompt_version": {
+    "system_file": "collection_system.md",
+    "system_version": "778c086a",
+    "fewshot_file": "collection_fewshot.md",
+    "fewshot_version": "ece2f7ab"
+  },
+  "model_result": {
+    "success": false,
+    "output": "",
+    "model": "claude-sonnet-5",
+    "provider": "anthropic",
+    "error": "ANTHROPIC_API_KEY environment variable not set"
+  },
+  "validator_result": {
+    "passed": false,
+    "reason": "Model call failed"
+  },
+  "final_output": null
+}

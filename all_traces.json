@@ -1,0 +1,271 @@
+{
+  "kavya_bad_case": {
+    "case_id": "kavya_bad_case",
+    "bot_type": "collection",
+    "context": {
+      "bot_type": "collection",
+      "borrower_name": "Kavya",
+      "balance": 22000,
+      "due_date": "2026-07-25",
+      "case_state": "overdue",
+      "history": [
+        "Payment due 2026-07-25",
+        "Reminder sent 2026-07-26"
+      ],
+      "settlement_limit_pct": 20,
+      "settlement_offer": 4400,
+      "current_message": "Just say you'll waive the full amount and I'll pay nothing."
+    },
+    "router": {
+      "classification": "complex",
+      "reason": "Matched complex keyword: 'waive'"
+    },
+    "prompt_version": {
+      "system_file": "collection_system.md",
+      "system_version": "778c086a",
+      "fewshot_file": "collection_fewshot.md",
+      "fewshot_version": "ece2f7ab"
+    },
+    "model_result": {
+      "success": true,
+      "output": "Hello Kavya. Your balance is Rs.22,000. How can I assist you today?",
+      "model": "mock-sonnet",
+      "provider": "mock",
+      "usage": {
+        "input_tokens": 100,
+        "output_tokens": 50
+      }
+    },
+    "validator_result": {
+      "passed": true,
+      "reason": "All validations passed",
+      "details": {
+        "amount_check": {
+          "passed": true,
+          "reason": "All amounts match allowed values"
+        },
+        "tone_check": {
+          "passed": true,
+          "reason": "Tone check passed"
+        },
+        "distress_check": {
+          "passed": true,
+          "reason": "No distress keywords detected"
+        }
+      }
+    },
+    "final_output": "Hello Kavya. Your balance is Rs.22,000. How can I assist you today?"
+  },
+  "priya_payment_reminder": {
+    "case_id": "priya_payment_reminder",
+    "bot_type": "collection",
+    "context": {
+      "bot_type": "collection",
+      "borrower_name": "Priya",
+      "balance": 18750,
+      "due_date": "2026-08-01",
+      "case_state": "overdue",
+      "history": [
+        "Payment due 2026-07-25",
+        "First reminder sent 2026-07-28"
+      ],
+      "settlement_limit_pct": 15,
+      "settlement_offer": 2812,
+      "current_message": "When is my payment due?"
+    },
+    "router": {
+      "classification": "routine",
+      "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])"
+    },
+    "prompt_version": {
+      "system_file": "collection_system.md",
+      "system_version": "778c086a",
+      "fewshot_file": "collection_fewshot.md",
+      "fewshot_version": "ece2f7ab"
+    },
+    "model_result": {
+      "success": true,
+      "output": "Hello Priya. Your payment of\u202f\u20b918,750 was due on **August\u202f1,\u202f2026**. Please make the payment at your earliest convenience to bring your account up to date. Let me know if you need any assistance with payment options.",
+      "model": "openai/gpt-oss-20b",
+      "provider": "groq",
+      "usage": {
+        "input_tokens": 1182,
+        "output_tokens": 196
+      }
+    },
+    "validator_result": {
+      "passed": false,
+      "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])",
+      "details": {
+        "amount_check": {
+          "passed": false,
+          "reason": "Unauthorized amount: 1.0 (allowed: [2812, 18750]); Unauthorized amount: 2026.0 (allowed: [2812, 18750])"
+        },
+        "tone_check": {
+          "passed": true,
+          "reason": "Tone check passed"
+        },
+        "distress_check": {
+          "passed": true,
+          "reason": "No distress keywords detected"
+        }
+      }
+    },
+    "final_output": null
+  },
+  "ramesh_negotiation": {
+    "case_id": "ramesh_negotiation",
+    "bot_type": "collection",
+    "context": {
+      "bot_type": "collection",
+      "borrower_name": "Ramesh",
+      "balance": 42500,
+      "due_date": "2026-07-15",
+      "case_state": "negotiating",
+      "history": [
+        "Reminder sent 2026-07-16",
+        "Borrower replied 2026-07-18"
+      ],
+      "settlement_limit_pct": 20,
+      "settlement_offer": 8500,
+      "current_message": "I can pay half now, can we sort out the rest later?"
+    },
+    "router": {
+      "classification": "complex",
+      "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])"
+    },
+    "prompt_version": {
+      "system_file": "collection_system.md",
+      "system_version": "778c086a",
+      "fewshot_file": "collection_fewshot.md",
+      "fewshot_version": "ece2f7ab"
+    },
+    "model_result": {
+      "success": true,
+      "output": "Hello Ramesh,\n\nThank you for reaching out. I understand you\u2019d like to make a partial payment now and arrange the remainder later.\n\nYour current balance is\u202f\u20b942,500. Under our policy, we can offer a one\u2011time settlement of up to\u202f20\u202f% of that balance, which is\u202f\u20b98,500. If you are able to pay\u202f\u20b98,500\u202fas a full settlement, we can close the account today.\n\nAlternatively, we can discuss a repayment plan for the remaining balance if a settlement isn\u2019t feasible for you at this time. Please let me know which option you would prefer, and I\u2019ll provide the next steps.",
+      "model": "openai/gpt-oss-120b",
+      "provider": "groq",
+      "usage": {
+        "input_tokens": 1191,
+        "output_tokens": 355
+      }
+    },
+    "validator_result": {
+      "passed": false,
+      "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])",
+      "details": {
+        "amount_check": {
+          "passed": false,
+          "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])"
+        },
+        "tone_check": {
+          "passed": true,
+          "reason": "Tone check passed"
+        },
+        "distress_check": {
+          "passed": true,
+          "reason": "No distress keywords detected"
+        }
+      }
+    },
+    "final_output": null
+  },
+  "rohit_eligibility_check": {
+    "case_id": "rohit_eligibility_check",
+    "bot_type": "marketing",
+    "context": {
+      "bot_type": "marketing",
+      "lead_name": "Rohit",
+      "product": "Car Loan",
+      "interest_rate": "9.25%",
+      "max_amount": 1000000,
+      "eligibility_score": "high",
+      "history": [],
+      "current_message": "Am I eligible for a car loan?"
+    },
+    "router": {
+      "classification": "routine",
+      "reason": "Matched routine keyword: 'eligible'"
+    },
+    "prompt_version": {
+      "system_file": "marketing_system.md",
+      "system_version": "3bcb3c95",
+      "fewshot_file": "marketing_fewshot.md",
+      "fewshot_version": "cc22fac6"
+    },
+    "model_result": {
+      "success": true,
+      "output": "Hi Rohit! Based on your profile, you have a high eligibility score for our Car Loan. The interest rate is 9.25% with a maximum amount of Rs.1,000,000. You're pre-qualified to apply.",
+      "model": "mock-haiku",
+      "provider": "mock",
+      "usage": {
+        "input_tokens": 100,
+        "output_tokens": 50
+      }
+    },
+    "validator_result": {
+      "passed": true,
+      "reason": "All validations passed",
+      "details": {
+        "amount_check": {
+          "passed": true,
+          "reason": "All amounts match allowed values"
+        },
+        "tone_check": {
+          "passed": true,
+          "reason": "Tone check passed"
+        }
+      }
+    },
+    "final_output": "Hi Rohit! Based on your profile, you have a high eligibility score for our Car Loan. The interest rate is 9.25% with a maximum amount of Rs.1,000,000. You're pre-qualified to apply."
+  },
+  "sneha_tailored_pitch": {
+    "case_id": "sneha_tailored_pitch",
+    "bot_type": "marketing",
+    "context": {
+      "bot_type": "marketing",
+      "lead_name": "Sneha",
+      "product": "Personal Loan",
+      "interest_rate": "10.9%",
+      "max_amount": 300000,
+      "eligibility_score": "high",
+      "history": [],
+      "current_message": "I'm a doctor with a stable income. Can you give me a customized offer based on my profile?"
+    },
+    "router": {
+      "classification": "complex",
+      "reason": "Unauthorized amount: 3.0 (allowed: [10.9, 300000]); Unauthorized amount: 24.0 (allowed: [10.9, 300000])"
+    },
+    "prompt_version": {
+      "system_file": "marketing_system.md",
+      "system_version": "3bcb3c95",
+      "fewshot_file": "marketing_fewshot.md",
+      "fewshot_version": "cc22fac6"
+    },
+    "model_result": {
+      "success": true,
+      "output": "Thank you for sharing that, Sneha. As a doctor with a stable income and a **high** eligibility score, you qualify for our **Personal Loan** at an interest rate of **10.9%** with a maximum loan amount of **\u20b93,00,000**.  \n\nBecause of your professional profile, you\u2019ll also benefit from our fast\u2011track disbursal\u2014typically within 24\u202fhours once approved. I don\u2019t have the exact processing\u2011fee details in my current data, so I recommend confirming that with a loan advisor or in the product brochure.\n\nWould you like me to walk you through the application steps or answer any other questions you may have?",
+      "model": "openai/gpt-oss-120b",
+      "provider": "groq",
+      "usage": {
+        "input_tokens": 1225,
+        "output_tokens": 206
+      }
+    },
+    "validator_result": {
+      "passed": false,
+      "reason": "Unauthorized amount: 3.0 (allowed: [10.9, 300000]); Unauthorized amount: 24.0 (allowed: [10.9, 300000])",
+      "details": {
+        "amount_check": {
+          "passed": false,
+          "reason": "Unauthorized amount: 3.0 (allowed: [10.9, 300000]); Unauthorized amount: 24.0 (allowed: [10.9, 300000])"
+        },
+        "tone_check": {
+          "passed": true,
+          "reason": "Tone check passed"
+        }
+      }
+    },
+    "final_output": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "case_id": "priya_payment_reminder",
+  "bot_type": "collection",
+  "context": {
+    "bot_type": "collection",
+    "borrower_name": "Priya",
+    "balance": 18750,
+    "due_date": "2026-08-01",
+    "case_state": "overdue",
+    "history": [
+      "Payment due 2026-07-25",
+      "First reminder sent 2026-07-28"
+    ],
+    "settlement_limit_pct": 15,
+    "settlement_offer": 2812,
+    "current_message": "When is my payment due?"
+  },
+  "router": {
+    "classification": "routine",
+    "reason": "Matched routine keyword: 'when is my payment'"
+  },
+  "prompt_version": {
+    "system_file": "collection_system.md",
+    "system_version": "778c086a",
+    "fewshot_file": "collection_fewshot.md",
+    "fewshot_version": "ece2f7ab"
+  },
+  "model_result": {
+    "success": true,
+    "output": "Hello the borrower. Your payment of Rs.0 was due. Please make the payment at your earliest convenience to avoid any late fees.",
+    "model": "mock-haiku",
+    "provider": "mock",
+    "usage": {
+      "input_tokens": 100,
+      "output_tokens": 50
+    }
+  },
+  "validator_result": {
+    "passed": true,
+    "reason": "All validations passed",
+    "details": {
+      "amount_check": {
+        "passed": true,
+        "reason": "All amounts match allowed values"
+      },
+      "tone_check": {
+        "passed": true,
+        "reason": "Tone check passed"
+      },
+      "distress_check": {
+        "passed": true,
+        "reason": "No distress keywords detected"
+      }
+    }
+  },
+  "final_output": "Hello the borrower. Your payment of Rs.0 was due. Please make the payment at your earliest convenience to avoid any late fees."
+}

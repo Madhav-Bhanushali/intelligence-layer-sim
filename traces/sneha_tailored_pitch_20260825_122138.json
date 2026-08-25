@@ -1,0 +1,49 @@
+{
+  "case_id": "sneha_tailored_pitch",
+  "bot_type": "marketing",
+  "context": {
+    "bot_type": "marketing",
+    "lead_name": "Sneha",
+    "product": "Personal Loan",
+    "interest_rate": "10.9%",
+    "max_amount": 300000,
+    "eligibility_score": "high",
+    "history": [],
+    "current_message": "I'm a doctor with a stable income. Can you give me a customized offer based on my profile?"
+  },
+  "router": {
+    "classification": "complex",
+    "reason": "Matched complex keyword: 'customized'"
+  },
+  "prompt_version": {
+    "system_file": "marketing_system.md",
+    "system_version": "3bcb3c95",
+    "fewshot_file": "marketing_fewshot.md",
+    "fewshot_version": "cc22fac6"
+  },
+  "model_result": {
+    "success": true,
+    "output": "Thank you for sharing that, Sneha. With your profile and high eligibility score, you qualify for our Personal Loan at 10.9% interest with up to Rs.300,000. Given your situation, you may benefit from our quick disbursal process. Would you like me to walk you through the next steps?",
+    "model": "mock-sonnet",
+    "provider": "mock",
+    "usage": {
+      "input_tokens": 100,
+      "output_tokens": 50
+    }
+  },
+  "validator_result": {
+    "passed": true,
+    "reason": "All validations passed",
+    "details": {
+      "amount_check": {
+        "passed": true,
+        "reason": "All amounts match allowed values"
+      },
+      "tone_check": {
+        "passed": true,
+        "reason": "Tone check passed"
+      }
+    }
+  },
+  "final_output": "Thank you for sharing that, Sneha. With your profile and high eligibility score, you qualify for our Personal Loan at 10.9% interest with up to Rs.300,000. Given your situation, you may benefit from our quick disbursal process. Would you like me to walk you through the next steps?"
+}

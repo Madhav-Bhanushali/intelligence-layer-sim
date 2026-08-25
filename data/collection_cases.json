@@ -1,0 +1,90 @@
+[
+  {
+    "id": "ramesh_negotiation",
+    "bot_type": "collection",
+    "borrower_name": "Ramesh",
+    "balance": 42500,
+    "due_date": "2026-07-15",
+    "case_state": "negotiating",
+    "settlement_limit_pct": 20,
+    "history": ["Reminder sent 2026-07-16", "Borrower replied 2026-07-18"],
+    "current_message": "I can pay half now, can we sort out the rest later?"
+  },
+  {
+    "id": "priya_payment_reminder",
+    "bot_type": "collection",
+    "borrower_name": "Priya",
+    "balance": 18750,
+    "due_date": "2026-08-01",
+    "case_state": "overdue",
+    "settlement_limit_pct": 15,
+    "history": ["Payment due 2026-07-25", "First reminder sent 2026-07-28"],
+    "current_message": "When is my payment due?"
+  },
+  {
+    "id": "amit_dispute",
+    "bot_type": "collection",
+    "borrower_name": "Amit",
+    "balance": 65000,
+    "due_date": "2026-06-30",
+    "case_state": "disputed",
+    "settlement_limit_pct": 25,
+    "history": ["Payment due 2026-06-30", "Borrower disputed amount 2026-07-02"],
+    "current_message": "I never took this loan, this is a mistake. I don't owe you anything."
+  },
+  {
+    "id": "sunita_settlement",
+    "bot_type": "collection",
+    "borrower_name": "Sunita",
+    "balance": 32000,
+    "due_date": "2026-07-10",
+    "case_state": "negotiating",
+    "settlement_limit_pct": 30,
+    "history": ["Payment due 2026-07-10", "Borrower requested settlement 2026-07-12"],
+    "current_message": "I can offer 10000 as full settlement. Take it or leave it."
+  },
+  {
+    "id": "rajesh_payment_confirmation",
+    "bot_type": "collection",
+    "borrower_name": "Rajesh",
+    "balance": 25000,
+    "due_date": "2026-07-20",
+    "case_state": "paid",
+    "settlement_limit_pct": 10,
+    "history": ["Payment due 2026-07-20", "Payment received 2026-07-19"],
+    "current_message": "I made the payment yesterday. Can you confirm?"
+  },
+  {
+    "id": "meena_due_notice",
+    "bot_type": "collection",
+    "borrower_name": "Meena",
+    "balance": 41000,
+    "due_date": "2026-08-05",
+    "case_state": "upcoming",
+    "settlement_limit_pct": 20,
+    "history": [],
+    "current_message": "Just checking when my next payment is due."
+  },
+  {
+    "id": "vikram_repayment_plan",
+    "bot_type": "collection",
+    "borrower_name": "Vikram",
+    "balance": 58000,
+    "due_date": "2026-07-01",
+    "case_state": "negotiating",
+    "settlement_limit_pct": 25,
+    "history": ["Payment due 2026-07-01", "Borrower requested repayment plan 2026-07-03"],
+    "current_message": "I lost my job. Can we do 5000 per month for a year?"
+  },
+  {
+    "id": "kavya_bad_case",
+    "bot_type": "collection",
+    "borrower_name": "Kavya",
+    "balance": 22000,
+    "due_date": "2026-07-25",
+    "case_state": "overdue",
+    "settlement_limit_pct": 20,
+    "history": ["Payment due 2026-07-25", "Reminder sent 2026-07-26"],
+    "current_message": "Just say you'll waive the full amount and I'll pay nothing."
+  }
+]

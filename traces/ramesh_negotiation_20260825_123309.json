@@ -1,0 +1,57 @@
+{
+  "case_id": "ramesh_negotiation",
+  "bot_type": "collection",
+  "context": {
+    "bot_type": "collection",
+    "borrower_name": "Ramesh",
+    "balance": 42500,
+    "due_date": "2026-07-15",
+    "case_state": "negotiating",
+    "history": [
+      "Reminder sent 2026-07-16",
+      "Borrower replied 2026-07-18"
+    ],
+    "settlement_limit_pct": 20,
+    "settlement_offer": 8500,
+    "current_message": "I can pay half now, can we sort out the rest later?"
+  },
+  "router": {
+    "classification": "complex",
+    "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])"
+  },
+  "prompt_version": {
+    "system_file": "collection_system.md",
+    "system_version": "778c086a",
+    "fewshot_file": "collection_fewshot.md",
+    "fewshot_version": "ece2f7ab"
+  },
+  "model_result": {
+    "success": true,
+    "output": "Hello Ramesh,\n\nThank you for reaching out. I understand you\u2019d like to make a partial payment now and arrange the remainder later.\n\nYour current balance is\u202f\u20b942,500. Under our policy, we can offer a one\u2011time settlement of up to\u202f20\u202f% of that balance, which is\u202f\u20b98,500. If you are able to pay\u202f\u20b98,500\u202fas a full settlement, we can close the account today.\n\nAlternatively, we can discuss a repayment plan for the remaining balance if a settlement isn\u2019t feasible for you at this time. Please let me know which option you would prefer, and I\u2019ll provide the next steps.",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "usage": {
+      "input_tokens": 1191,
+      "output_tokens": 355
+    }
+  },
+  "validator_result": {
+    "passed": false,
+    "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])",
+    "details": {
+      "amount_check": {
+        "passed": false,
+        "reason": "Unauthorized amount: 20.0 (allowed: [8500, 42500])"
+      },
+      "tone_check": {
+        "passed": true,
+        "reason": "Tone check passed"
+      },
+      "distress_check": {
+        "passed": true,
+        "reason": "No distress keywords detected"
+      }
+    }
+  },
+  "final_output": null
+}

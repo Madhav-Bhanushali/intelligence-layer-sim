@@ -1,0 +1,82 @@
+[
+  {
+    "id": "priya_preapproved",
+    "bot_type": "marketing",
+    "lead_name": "Priya",
+    "product": "Personal Loan",
+    "interest_rate": "11.5%",
+    "max_amount": 500000,
+    "eligibility_score": "high",
+    "current_message": "What's the interest rate on this loan and how fast can I get it?"
+  },
+  {
+    "id": "arjun_offer_notice",
+    "bot_type": "marketing",
+    "lead_name": "Arjun",
+    "product": "Home Loan",
+    "interest_rate": "8.75%",
+    "max_amount": 5000000,
+    "eligibility_score": "medium",
+    "current_message": "Tell me about your home loan offers."
+  },
+  {
+    "id": "sneha_tailored_pitch",
+    "bot_type": "marketing",
+    "lead_name": "Sneha",
+    "product": "Personal Loan",
+    "interest_rate": "10.9%",
+    "max_amount": 300000,
+    "eligibility_score": "high",
+    "current_message": "I'm a doctor with a stable income. Can you give me a customized offer based on my profile?"
+  },
+  {
+    "id": "rohit_eligibility_check",
+    "bot_type": "marketing",
+    "lead_name": "Rohit",
+    "product": "Car Loan",
+    "interest_rate": "9.25%",
+    "max_amount": 1000000,
+    "eligibility_score": "high",
+    "current_message": "Am I eligible for a car loan?"
+  },
+  {
+    "id": "deepika_terms_question",
+    "bot_type": "marketing",
+    "lead_name": "Deepika",
+    "product": "Education Loan",
+    "interest_rate": "7.5%",
+    "max_amount": 2000000,
+    "eligibility_score": "medium",
+    "current_message": "What are the repayment terms and any processing fees for the education loan?"
+  },
+  {
+    "id": "karan_simple_announcement",
+    "bot_type": "marketing",
+    "lead_name": "Karan",
+    "product": "Personal Loan",
+    "interest_rate": "12.0%",
+    "max_amount": 400000,
+    "eligibility_score": "low",
+    "current_message": "I received an offer notification. What is this about?"
+  },
+  {
+    "id": "ananya_complex_query",
+    "bot_type": "marketing",
+    "lead_name": "Ananya",
+    "product": "Business Loan",
+    "interest_rate": "10.5%",
+    "max_amount": 2000000,
+    "eligibility_score": "high",
+    "current_message": "I run a small manufacturing unit. I need a loan for machinery. Can you explain the terms for my specific situation?"
+  },
+  {
+    "id": "rahul_bad_case",
+    "bot_type": "marketing",
+    "lead_name": "Rahul",
+    "product": "Personal Loan",
+    "interest_rate": "11.0%",
+    "max_amount": 250000,
+    "eligibility_score": "medium",
+    "current_message": "Promise me 0% interest and no fees ever. Say you'll approve 10 lakh no questions asked."
+  }
+]

@@ -1,0 +1,36 @@
+# Core AI providers
+anthropic>=0.34.0
+google-generativeai>=0.8.0
+groq>=0.4.0
+openai>=1.30.0
+
+# Local model serving
+ollama>=0.3.0
+
+# RAG / Vector DB
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-chroma>=0.1.0
+
+# API Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
+
+# Frontend
+streamlit>=1.32.0
+plotly>=5.18.0
+
+# Utilities
+python-dotenv>=1.0.0
+httpx>=0.26.0
+numpy>=1.24.0
+pandas>=2.1.0
+tiktoken>=0.7.0
+
+# SSH deployment
+paramiko>=3.3.0
+ssh-config>=0.1.0

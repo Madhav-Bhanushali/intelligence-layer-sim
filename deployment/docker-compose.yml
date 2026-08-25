@@ -11,6 +11,7 @@ services:
     environment:
       - MODEL_PROVIDER=groq
       - CHROMA_PERSIST_DIR=/data/chroma
+      - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
       - ../data:/app/data
       - ../prompts:/app/prompts

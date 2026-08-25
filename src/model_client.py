@@ -18,9 +18,9 @@ def is_mock_mode() -> bool:
     return os.getenv("MOCK_MODE", "false").lower() == "true"
 
 
-# Groq models
-GROQ_SMALL = "openai/gpt-oss-20b"
-GROQ_LARGE = "openai/gpt-oss-120b"
+# Groq models (smaller, fast models)
+GROQ_SMALL = "llama-3.1-8b-instant"
+GROQ_LARGE = "gemma2-9b-it"
 
 # Gemini models
 GEMINI_SMALL = "gemini-1.5-flash"
